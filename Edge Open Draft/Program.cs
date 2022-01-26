@@ -76,9 +76,9 @@ namespace Edge_Open_Draft
         {
             #region 변수선언
             SolidEdgeFramework.Application EdApp = null;
-            SolidEdgePart.PartDocument EdPart = null;
-            SolidEdgeAssembly.AssemblyDocument EdAssy = null;
-            SolidEdgeDraft.DraftDocument EdDft = null;
+            //SolidEdgePart.PartDocument EdPart = null;
+            //SolidEdgeAssembly.AssemblyDocument EdAssy = null;
+            //SolidEdgeDraft.DraftDocument EdDft = null;
             #endregion
 
 
@@ -92,8 +92,7 @@ namespace Edge_Open_Draft
                 {
                     EdApp = (Application)Marshal2.GetActiveObject("SolidEdge.Application");
 
-                    String TStr = String.Empty;
-                    String TStrDrf = String.Empty;
+                    String TStr = String.Empty;                   
 
                     if (EdApp.ActiveSelectSet.Count > 0)
                     {
@@ -104,21 +103,18 @@ namespace Edge_Open_Draft
                     {
                         TStr = EdApp.ActiveDocument.FullName;
 
-                    }
+                    } 
+                   
+                    TStr   = TStr.Substring(0,TStr.Length - 3) + "dft" ;
 
-                    TStrDrf = TStr.Substring(0,TStr.Length - 3) + "dft" ;
-
-                    //static string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                    //static string directoryPath = Path.GetDirectoryName(exePath);
-                    //if (File.Exists(directoryPath + @"\CatiaLubeGroove.pdf")) 
-                    if (File.Exists(TStrDrf))
+                    if (File.Exists(TStr))
                     {
-                        EdApp.Documents.Open(TStrDrf);
+                        EdApp.Documents.Open(TStr);
                     }
                     else
                     {
-                        EdApp.StartCommand("57637");
-
+                        dynamic EdgeApplication = EdApp;
+                        EdgeApplication.StartCommand("11604");
                     }
                 }
                 else
@@ -137,7 +133,6 @@ namespace Edge_Open_Draft
             {
                 //OleMessageFilter.Revoke();
             }
-            //Console.WriteLine("Hello World!");
         }
     }
 }
