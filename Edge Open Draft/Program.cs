@@ -96,7 +96,17 @@ namespace Edge_Open_Draft
 
                     if (EdApp.ActiveSelectSet.Count > 0)
                     {
-                        TStr = EdApp.ActiveSelectSet.Item(1).Object.OccurrenceFileName;
+                        
+                        if (EdApp.ActiveSelectSet.Item(1) is SolidEdgeAssembly.Occurrence)
+                        {
+                            TStr = EdApp.ActiveSelectSet.Item(1).OccurrenceFileName;
+                        }
+                        else
+                        {
+                            TStr = EdApp.ActiveSelectSet.Item(1).Object.OccurrenceFileName;
+                        }
+
+                        
 
                     }
                     else
@@ -127,7 +137,8 @@ namespace Edge_Open_Draft
             }
             catch (System.Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Debug.Print(ex.Message);
+                //Console.WriteLine(ex.Message);
             }
             finally
             {

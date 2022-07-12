@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Edge_Open_Draft</RootNamespace>
-    <ApplicationIcon />
+    <ApplicationIcon>Draft_Open.ico</ApplicationIcon>
     <StartupObject />
   </PropertyGroup>
 
